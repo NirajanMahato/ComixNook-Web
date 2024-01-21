@@ -1,6 +1,6 @@
 .active li{
     font-weight: 600;
-    background-color: rgba(132, 125, 155, 0.59);
+    background-color: #B6BBC4;
     margin-left: -2px;
     margin-bottom: 2px;
     box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -17,7 +17,7 @@
     align-items: center;
     border-radius: 10px;
     margin: 4px;
-    background-color: #ffffff;
+    background-color: #f8f5f5;
     z-index: 102;
 }
 
@@ -102,12 +102,12 @@
     height: 7.2vh;
     border-radius: 7px;
     border-color: transparent;
-    background-color: #32248d;
-    box-shadow: 2px 2px 10px -1px rgb(96, 65, 1);
+    background-color: #681cb0;
+    box-shadow: 2px 2px 10px -1px rgb(33, 1, 96);
     cursor: pointer;
 }
 .sidebar-btn button:hover {
-    background-color: #6c4b4b;
+    background-color: #31304D;
     color: #000000;
-    box-shadow: 5px 10px 15px -1px rgb(119, 85, 85);
+    box-shadow: 5px 10px 15px -1px #B6BBC4;
 }

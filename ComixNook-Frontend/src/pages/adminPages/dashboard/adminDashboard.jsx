@@ -1,10 +1,14 @@
 import "./adminDashboard.css"
-import AdminSidebar from "../components/adminSidebar.jsx";
+import AdminSidebar from "../adminComponents/adminSidebar.jsx";
+import AdminHeader from "../adminComponents/adminHeader.jsx";
 
 const AdminDashboard = () =>{
     return(
         <>
-            <AdminSidebar/>
+            <div className={"dashboard-main-div"}>
+                <AdminSidebar/>
+                <AdminHeader/>
+            </div>
         </>
     )
 }
