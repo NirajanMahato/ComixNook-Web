@@ -35,6 +35,9 @@ body {
   font-family: Gilroy SemiBold;
   src: url("../public/Fonts/Gilroy-SemiBold.ttf") format('truetype');
 }
+input {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+}
 
 /*!*!*Custom Button Style*!*!*/
 .btn-style h3{
