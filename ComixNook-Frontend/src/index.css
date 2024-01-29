@@ -36,10 +36,40 @@ body {
   src: url("../public/Fonts/Gilroy-SemiBold.ttf") format('truetype');
 }
 
-/*h1 {*/
-/*  font-size: 3.2em;*/
-/*  line-height: 1.1;*/
-/*}*/
+/*!*!*Custom Button Style*!*!*/
+.btn-style h3{
+  padding: 2px 5px;
+  border-radius: 7px;
+  border: 1.5px solid #2c0957;
+  font-size: 18px;
+  position: relative;
+  transition: all ease 0.4s;
+  overflow: hidden;
+}
+.btn-style h3::after{
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.87);
+  left: 0;
+  bottom: -100%;
+  border-radius: 50%;
+  transition: all ease 0.4s;
+}
+.btn-style h3:hover::after{
+  bottom: 0;
+  border-radius: 0;
+}
+.btn-style h3 a{
+  color: #000000;
+  position: relative;
+  z-index: 9;
+  transition: all ease 1s;
+}
+.btn-style h3:hover a{
+  color: white;
+}
 
 /*button {*/
 /*  border-radius: 8px;*/

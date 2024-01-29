@@ -1,9 +1,15 @@
 import "./homePage.css"
+import Navbar from "../components/navbar.jsx";
 
 const HomePage = () =>{
     return(
         <>
-            Homepage
+            <div className={"homepage-div"}>
+                <Navbar/>
+                <div className={"homepage-main-content"}>
+                    Homepage
+                </div>
+            </div>
         </>
     )
 }
