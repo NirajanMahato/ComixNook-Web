@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
-    String save(UserPojo userPojo);
+    void save(UserPojo userPojo);
 
     List<User> getAll();
 

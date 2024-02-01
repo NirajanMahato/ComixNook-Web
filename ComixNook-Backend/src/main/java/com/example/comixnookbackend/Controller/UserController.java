@@ -3,7 +3,6 @@ package com.example.comixnookbackend.Controller;
 import com.example.comixnookbackend.Entity.User;
 import com.example.comixnookbackend.Pojo.UserPojo;
 import com.example.comixnookbackend.Service.UserService;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +17,7 @@ import java.util.Optional;
 public class UserController {
     private final UserService userService;
 
-    @PostMapping("save")
+    @PostMapping("/save")
     public String saveUser(@RequestBody UserPojo userPojo){
         userService.save(userPojo);
         return "in this section";
@@ -34,10 +33,8 @@ public class UserController {
         return this.userService.getById(id);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deleteById/{id}")
     public void deleteById(@PathVariable("id") Long id){
         this.userService.deleteById(id);
     }
 }
-
-//comment

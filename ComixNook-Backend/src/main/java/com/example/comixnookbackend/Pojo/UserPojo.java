@@ -1,5 +1,6 @@
 package com.example.comixnookbackend.Pojo;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Getter
@@ -7,15 +8,16 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserPojo {
+
     private Long id;
 
-    @NonNull
+    @NotNull
     private String fullName;
 
-    @NonNull
+    @NotNull
     private String email;
 
-    @NonNull
+    @NotNull
     private String password;
 
     private String securityQuestion;

@@ -1,4 +1,4 @@
-package com.example.feast.util;
+package com.example.comixnookbackend.util;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.Base64;
 public class ImageToBase64 {
 
     public String getImageBase64(String fileName) {
-        String filePath = System.getProperty("user.dir") + "/Feast-Images/";
+        String filePath = System.getProperty("user.dir") + "/Comix-Images/";
         File file = new File(filePath + fileName);
         byte[] bytes = new byte[0];
         try {

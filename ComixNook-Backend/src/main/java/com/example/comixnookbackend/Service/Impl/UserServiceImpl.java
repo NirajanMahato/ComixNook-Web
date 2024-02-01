@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService{
     private final UserRepo userRepo;
 
     @Override
-    public String save(UserPojo userPojo) {
+    public void save(UserPojo userPojo) {
         User user = new User();
 
         if(userPojo.getId()!=null){
@@ -30,7 +30,6 @@ public class UserServiceImpl implements UserService{
         user.setSecurityQuestion(userPojo.getSecurityQuestion());
 
         userRepo.save(user); // insert query
-        return null;
     }
 
     @Override

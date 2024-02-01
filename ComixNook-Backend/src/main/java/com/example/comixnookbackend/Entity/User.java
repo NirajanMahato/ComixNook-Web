@@ -1,18 +1,16 @@
 package com.example.comixnookbackend.Entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
 @Table(name="users")
-@Getter
-@Setter
+@Data
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", nullable = false)
+    @SequenceGenerator(name = "users_seq_gen", sequenceName = "users_id_seq", allocationSize = 1)
+    @GeneratedValue(generator = "users_seq_gen", strategy = GenerationType.SEQUENCE)
     private long id;
 
     @Column(name="full_name", nullable = false)
@@ -24,7 +22,7 @@ public class User {
     @Column(name="password", nullable = false)
     private String password;
 
-    @Column(name="security_question", nullable = false)
+    @Column(name="security_question")
     private String securityQuestion;
 
 }
