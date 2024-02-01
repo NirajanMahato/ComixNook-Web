@@ -14,6 +14,9 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+h1::selection{
+  background-color: #B6BBC4;
+}
 
 @font-face {
   font-family: Gilroy Light;
@@ -48,6 +51,9 @@ input {
   position: relative;
   transition: all ease 0.4s;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 .btn-style h3::after{
   content: '';
@@ -72,6 +78,55 @@ input {
 }
 .btn-style h3:hover a{
   color: white;
+}
+
+.btn-style2 h3{
+  padding: 2px 5px;
+  border-radius: 7px;
+  border: 2.5px solid #2c0957;
+  font-size: 18px;
+  position: relative;
+  transition: all ease 0.4s;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.btn-style2 h3::after{
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #ffffff;
+  left: 0;
+  top: -100%;
+  border-radius: 50%;
+  transition: all ease 0.4s;
+}
+.btn-style2 h3:hover::after{
+  top: 0;
+  border-radius: 0;
+}
+.btn-style2 h3 a{
+  color: #ffffff;
+  position: relative;
+  z-index: 9;
+  transition: all ease 1s;
+}
+.btn-style2 h3:hover a{
+  color: #000000;
+}
+
+p{
+  color: #681cb0;
+}
+
+.gilroy-bold{
+  font-family: Gilroy Bold;
+}
+.gilroy-semibold{
+  font-family: "Gilroy SemiBold";
 }
 
 /*button {*/

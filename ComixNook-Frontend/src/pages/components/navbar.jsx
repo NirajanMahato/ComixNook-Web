@@ -34,10 +34,7 @@ class Navbar extends Component{
                             <NavLink to={"/NewPage"}>New</NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/a"}>About</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={"/a"}>A-Z List</NavLink>
+                            <NavLink to={"/AzListPage"}>A-Z List</NavLink>
                         </li>
                         <div className={"navbar-search-wrapper"}>
                             <input type={"search"} placeholder={"SEARCH"}/>
@@ -45,7 +42,7 @@ class Navbar extends Component{
                         </div>
                     </div>
                     <div className={"navbar-right btn-style"} >
-                        <Link to={'/LoginPage'}><h3 className={"transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"}><a>Sign-Up</a></h3></Link>
+                        <Link to={'/LoginPage'}><h3><a>Sign-Up</a></h3></Link>
                     </div>
                 </ul>
             </nav>

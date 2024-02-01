@@ -30,7 +30,7 @@ const RegisterPage = () =>{
         useApiCall.mutate(value)
     }
 
-    const er = <BiMessageSquareError style={{marginTop:"1.5px"}}/>
+    // const er = <BiMessageSquareError style={{marginTop:"1.5px"}}/>
 
     return(
         <>
@@ -44,16 +44,29 @@ const RegisterPage = () =>{
                         <BsFillPersonFill style={{fontSize:"1.3rem",marginRight:"0.5rem",color:"gray"}}/>
                         <input type={"text"} placeholder={"Full Name"} className={"w-full outline-none"} {...register("fullName",{required:"Name is required"})}/>
                     </div>
-                    <h6 className={"md:w-5/12 w-11/12 flex text-gray-500 text-xs"}>{er+errors?.fullName?.message}</h6>
+                    <h6 className={"md:w-5/12 w-11/12 flex text-gray-500 text-xs"}>{errors?.fullName?.message}</h6>
                     <div className={"md:w-6/12 w-11/12 h-12 border-solid border rounded-3xl border-gray-300 mt-4 flex items-center pl-4 pr-2"}>
                         <MdEmail style={{fontSize:"1.4rem",marginRight:"0.5rem",color:"gray"}}/>
-                        <input type={"text"} placeholder={"Email"} className={"w-full outline-none"}/>
+                        <input type={"text"} placeholder={"Email"} className={"w-full outline-none"}
+                               {...register("email",{required:"Email is required",
+                                   pattern: {
+                                       value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
+                                       message: "Invalid email address"
+                                   }})}/>
                     </div>
+                    {errors?.email && (<h6 className={"md:w-5/12 w-11/12 flex text-gray-500 text-xs"}>
+                            <BiMessageSquareError style={{ marginRight: "0.1rem",marginTop:"0.1rem"}} />{errors?.email?.message}
+                    </h6>)}
                     <div className={"md:w-6/12 w-11/12 h-12 border-solid border rounded-3xl border-gray-300 mt-4 flex items-center pl-4 pr-2"}>
                         <IoMdLock style={{fontSize:"1.4rem",marginRight:"0.5rem",color:"gray"}}/>
-                        <input type={"password"} placeholder={"Password"} className={"w-full outline-none"}/>
+                        <input type={"password"} placeholder={"Password"} className={"w-full outline-none"}
+                               {...register("password",{required:"Password is required",minLength: {
+                                value: 6,
+                                message: "Password must be at least 6 characters long"
+                            }})}/>
                     </div>
-                    <button className={"mt-8 md:w-6/12 w-11/12 rounded-3xl h-12 bg-black text-white text-lg font-normal transition duration-300 ease-in-out hover:bg-purple-950 hover:shadow-md"} type={"submit"}>
+                    <h6 className={"md:w-5/12 w-11/12 flex text-gray-500 text-xs"}>{errors?.password?.message}</h6>
+                    <button className={"mt-8 md:w-6/12 w-11/12 rounded-3xl h-12 bg-black text-white text-lg font-normal transition duration-200 ease-in-out hover:bg-white hover:text-black hover:font-semibold border-2 border-black"} type={"submit"}>
                         Create Account
                     </button>
                     <div className={"md:w-6/12 w-11/12 flex justify-center pt-3 pr-1"}>
