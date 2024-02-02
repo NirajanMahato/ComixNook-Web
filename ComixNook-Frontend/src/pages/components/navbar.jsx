@@ -28,13 +28,10 @@ class Navbar extends Component{
                             <NavLink to={"/"}>Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/g"}>Genre</NavLink>
+                            <NavLink to={"/GenrePage"}>Genre</NavLink>
                         </li>
                         <li>
                             <NavLink to={"/NewPage"}>New</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={"/AzListPage"}>A-Z List</NavLink>
                         </li>
                         <div className={"navbar-search-wrapper"}>
                             <input type={"search"} placeholder={"SEARCH"}/>

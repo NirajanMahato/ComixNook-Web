@@ -118,6 +118,44 @@ input {
   color: #000000;
 }
 
+.btn-style3 h3{
+  padding: 2px 5px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  font-size: 18px;
+  position: relative;
+  transition: all ease 0.4s;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.btn-style3 h3::after{
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #b4b4b4;
+  left: 0;
+  top: -100%;
+  border-radius: 50%;
+  transition: all ease 0.4s;
+}
+.btn-style3 h3:hover::after{
+  top: 0;
+  border-radius: 0;
+}
+.btn-style3 h3 a{
+  color: #ffffff;
+  position: relative;
+  z-index: 9;
+  transition: all ease 1s;
+}
+.btn-style3 h3:hover a{
+  color: #000000;
+}
+
 p{
   color: #681cb0;
 }

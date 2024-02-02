@@ -2,10 +2,10 @@ import Footer from "../components/footer.jsx";
 import Navbar from "../components/navbar.jsx";
 
 
-const AzListPage = () => {
+const GenrePage = () => {
     return(
         <>
-            <div className={"AzListPage-div"}>
+            <div className={"GenrePage-div"}>
                 <Navbar/>
                 <div className={""}>
 
@@ -17,4 +17,4 @@ const AzListPage = () => {
     )
 }
 
-export default AzListPage;
+export default GenrePage;

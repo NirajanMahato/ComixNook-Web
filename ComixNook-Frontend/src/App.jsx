@@ -7,7 +7,8 @@ import NewPage from "./pages/newPage/newPage.jsx";
 import LoginPage from "./pages/login&Register/loginPage.jsx";
 import RegisterPage from "./pages/login&Register/registerPage.jsx";
 import ForgetPassword from "./pages/login&Register/forgetPassword.jsx";
-import AzListPage from "./pages/A-ZlistPage/azListPage.jsx";
+import GenrePage from "./pages/genrePage/genrePage.jsx";
+import ManageComic from "./pages/adminPages/manageComic.jsx";
 
 
 const queryClient = new QueryClient();
@@ -19,11 +20,12 @@ function App() {
           <RouterProvider router={createBrowserRouter([
               {path: "/", element: <HomePage/>},
               {path: "/NewPage", element: <NewPage/>},
-              {path: "/AzListPage", element: <AzListPage/>},
-              {path: "/AdminDashboard", element: <AdminDashboard/>},
+              {path: "/GenrePage", element: <GenrePage/>},
               {path: "/LoginPage", element: <LoginPage/>},
               {path: "/RegisterPage", element: <RegisterPage/>},
               {path: "/ForgetPassword", element: <ForgetPassword/>},
+              {path: "/AdminDashboard", element: <AdminDashboard/>},
+              {path: "/ManageComic", element: <ManageComic/>},
           ])} />
         </QueryClientProvider>
       </>

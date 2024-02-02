@@ -3,7 +3,7 @@ import {BiSolidCategoryAlt} from "react-icons/bi";
 import {FaBowlFood} from "react-icons/fa6";
 import {IoMdLogOut} from "react-icons/io";
 import {NavLink} from "react-router-dom";
-import {MdSpaceDashboard} from "react-icons/md";
+import {MdCollectionsBookmark, MdSpaceDashboard} from "react-icons/md";
 import comixNook from"../../../../public/Logos/ComixNookLogo.png"
 import "./adminSidebar.css"
 
@@ -34,14 +34,14 @@ const AdminSidebar = () =>{
                         <NavLink to={"/ManageCategory"}>
                             <li className={`sidebar-list-item`}>
                                 <span><BiSolidCategoryAlt style={{fontSize:"18px",marginBottom:"-3px"}}/></span>
-                                <a>Manage Category</a>
+                                <a>Genres</a>
                             </li>
                         </NavLink>
 
-                        <NavLink to={"/ManageItem"}>
+                        <NavLink to={"/ManageComic"}>
                             <li className={`sidebar-list-item`}>
-                                <span><FaBowlFood style={{fontSize:"18px",marginBottom:"-3px"}}/></span>
-                                <a>Manage items</a>
+                                <span><MdCollectionsBookmark style={{fontSize:"18px",marginBottom:"-3px"}}/></span>
+                                <a>Manage Comics</a>
                             </li>
                         </NavLink>
                     </ul>

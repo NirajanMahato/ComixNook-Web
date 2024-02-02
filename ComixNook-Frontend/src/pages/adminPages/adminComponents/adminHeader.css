@@ -3,8 +3,8 @@
     display: flex;
     position: absolute;
     right: 1%;
-    height: 12vh;
-    width: 79vw;
+    height: 9vh;
+    width: 80.2vw;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 3rem;
@@ -15,7 +15,7 @@
 
 .dashboard-header h1{
     color: #222;
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .dashboard-header span{
