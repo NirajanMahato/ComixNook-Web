@@ -9,6 +9,7 @@ import RegisterPage from "./pages/login&Register/registerPage.jsx";
 import ForgetPassword from "./pages/login&Register/forgetPassword.jsx";
 import GenrePage from "./pages/genrePage/genrePage.jsx";
 import ManageComic from "./pages/adminPages/manageComic.jsx";
+import ManageGenre from "./pages/adminPages/manageGenre.jsx";
 
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ function App() {
               {path: "/ForgetPassword", element: <ForgetPassword/>},
               {path: "/AdminDashboard", element: <AdminDashboard/>},
               {path: "/ManageComic", element: <ManageComic/>},
+              {path: "/ManageGenre", element: <ManageGenre/>},
           ])} />
         </QueryClientProvider>
       </>
