@@ -2,7 +2,8 @@ import {Component} from "react";
 import "./navbar.css"
 import { Link, NavLink} from "react-router-dom";
 import comixNook from "../../../public/Logos/ComixNookLogo.png"
-import {FaSearch} from "react-icons/fa";
+import {FaRegHeart, FaSearch} from "react-icons/fa";
+import {RiHeart2Line} from "react-icons/ri";
 
 class Navbar extends Component{
 
@@ -37,6 +38,9 @@ class Navbar extends Component{
                             <input type={"search"} placeholder={"SEARCH"}/>
                             <span className={"animate-pulse"}><FaSearch/></span>
                         </div>
+                    </div>
+                    <div className={"favorite-icon"}>
+                        <FaRegHeart style={{fontSize:"1.4rem"}}/>
                     </div>
                     <div className={"navbar-right btn-style"} >
                         <Link to={'/LoginPage'}><h3><a>Sign-Up</a></h3></Link>

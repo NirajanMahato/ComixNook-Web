@@ -12,11 +12,11 @@ const Footer = () =>{
                     <h1 className={"md:text-xl hidden md:flex gilroy-semibold"}>Lots of content is waiting for you on our social pages</h1>
                     <div className={"social-icons"}>
                         <ul className={"flex"}>
-                            <li><FaFacebookF /></li>
-                            <li><RiInstagramFill /></li>
-                            <li><FaYoutube /></li>
-                            <li><FaLinkedinIn /></li>
-                            <li><FaDiscord /></li>
+                            <a href={"https://www.facebook.com/nirajan.1224"} target={"_blank"} rel={"noreferrer"}><li><FaFacebookF /></li></a>
+                            <a href={"https://www.instagram.com/nirajan__mahato/"} target={"_blank"} rel={"noreferrer"}><li><RiInstagramFill /></li></a>
+                            <a href={"https://www.youtube.com/channel/UCyaStskMQyOdqz3SlQLBVew"} target={"_blank"} rel={"noreferrer"}><li><FaYoutube /></li></a>
+                            <a href={""} target={"_blank"} rel={"noreferrer"}><li><FaLinkedinIn /></li></a>
+                            <a href={""} target={"_blank"} rel={"noreferrer"}><li><FaDiscord /></li></a>
                         </ul>
                     </div>
                 </div>
