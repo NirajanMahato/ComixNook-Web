@@ -177,6 +177,18 @@ p{
 .gilroy-medium{
   font-family: "Gilroy Medium";
 }
+td{
+  text-align: center;
+}
+.action-icon{
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  padding-top: 0.3rem;
+  font-size: 1.6rem;
+  color: #5b5b5b;
+}
+
 
 /*button {*/
 /*  border-radius: 8px;*/

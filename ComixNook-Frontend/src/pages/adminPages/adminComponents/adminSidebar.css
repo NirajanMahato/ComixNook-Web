@@ -82,7 +82,7 @@
 }
 
 .sidebar-list-item:hover {
-    background-color: #6238ab;
+    background-color: #4b5563;
     color: var(--clr-light);
     margin-left: -2px;
     margin-bottom: 2px;
@@ -99,11 +99,11 @@
     bottom: 2%;
 }
 .sidebar-btn{
-    background-color: rgb(212, 213, 217);
+    background-color: rgb(214, 217, 220);
     transition: all ease-in-out 0.2s;
 }
 .sidebar-btn:hover{
-    background-color: #c0c5cc;
+    background-color: #aaacb6;
 }
 /*.sidebar-btn button{*/
 /*    font-size: 1.3rem;*/
