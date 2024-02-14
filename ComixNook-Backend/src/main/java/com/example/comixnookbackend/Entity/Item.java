@@ -13,7 +13,7 @@ public class Item {
     @Id
     @SequenceGenerator(name = "users_seq_gen", sequenceName = "users_id_seq", allocationSize = 1)
     @GeneratedValue(generator = "users_seq_gen", strategy = GenerationType.SEQUENCE)
-    private long itemId;
+    private Long itemId;
 
     @Column(name = "item_name", nullable = false, unique = true)
     private String itemName;

@@ -31,12 +31,12 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public List<Genre> getAll() {
-        return genreRepo.findAll(); // select * from users
+        return genreRepo.findAll(); // select * from genre
     }
 
     @Override
     public void deleteById(Long id) {
-        genreRepo.deleteById(id); // delete from users where id =?1
+        genreRepo.deleteById(id); // delete from genre where id =?1
     }
 
     @Override

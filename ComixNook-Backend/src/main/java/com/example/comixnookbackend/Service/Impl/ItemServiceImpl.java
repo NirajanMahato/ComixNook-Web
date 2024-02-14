@@ -32,9 +32,9 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void saveItem(ItemPojo itemPojo) throws IOException {
         Item item;
-        if (itemPojo.getId() != null) {
-            item = itemRepo.findById(itemPojo.getId())
-                    .orElseThrow(() -> new EntityNotFoundException("Item not found with ID: " + itemPojo.getId()));
+        if (itemPojo.getItemId() != null) {
+            item = itemRepo.findById(itemPojo.getItemId())
+                    .orElseThrow(() -> new EntityNotFoundException("Item not found with ID: " + itemPojo.getItemId()));
         } else {
             item = new Item();
         }

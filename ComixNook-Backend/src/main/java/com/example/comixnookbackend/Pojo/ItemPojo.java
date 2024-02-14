@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class ItemPojo {
 
-    private Long id;
+    private Long itemId;
 
     @NotNull
     private String itemName;
