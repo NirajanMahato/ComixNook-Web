@@ -1,10 +1,11 @@
 import AdminSidebar from "./adminComponents/adminSidebar.jsx";
 import {IoSearch} from "react-icons/io5";
-import {FaPlus} from "react-icons/fa";
 import {MdDelete, MdEditSquare} from "react-icons/md";
 import {useState} from "react";
-import {useQuery} from "@tanstack/react-query";
+import {useMutation, useQuery} from "@tanstack/react-query";
 import axios from "axios";
+import {HiPlusCircle} from "react-icons/hi";
+import {FaPlusCircle} from "react-icons/fa";
 
 
 const ManageComic = () =>{
@@ -25,6 +26,17 @@ const ManageComic = () =>{
     //     i.name.toLowerCase().includes(search.toLowerCase())
     // );
 
+    //Deleting comic Item
+    const deleteByIdApi=useMutation(
+        {
+            mutationKey:["DELETE_COMIC_BY_ID"],
+            mutationFn(id){
+                return axios.delete("http://localhost:8082/item/deleteById/"+id);
+            }
+            // ,onSuccess(){refetch()}
+        }
+    )
+
     return(
         <>
             <div className={"manage-comic-div"}>
@@ -40,7 +52,9 @@ const ManageComic = () =>{
                             <span className={"ml-1 text-xl cursor-pointer"}><IoSearch /></span>
                         </div>
                         <div className={"btn-style2 bg-black rounded-xl"}>
-                            <h3 className={"h-10"}><a className={"gilroy-medium flex items-center px-2"}><FaPlus className={"text-sm mr-1"}/>Add Comic</a></h3>
+                            <h3 className={"h-10"} onClick={()=>document.getElementById('my_modal_3').showModal()}>
+                                <a className={"gilroy-medium flex items-center px-2"}><FaPlusCircle className={"text-lg mr-1"}/>Add Comic</a>
+                            </h3>
                         </div>
                     </div>
 
@@ -48,12 +62,12 @@ const ManageComic = () =>{
                         <thead className={"h-12 text-white bg-gray-600 rounded-xl gilroy-semibold"}>
                         <tr>
                             <th className={"px-2"}>ID</th>
-                            <th className={"px-10"}>Comics Name</th>
+                            <th className={"px-20"}>Comics Name</th>
                             <th className={"px-10"}>Author</th>
                             <th className={"px-6"}>Genre</th>
-                            <th className={"px-8"}>Image</th>
-                            <th className={"px-20"}>Released date</th>
-                            <th className={"px-5"}>Action</th>
+                            <th className={"px-6"}>Image</th>
+                            <th className={"px-4"}>Released date</th>
+                            <th className={"px-8"}>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -70,7 +84,11 @@ const ManageComic = () =>{
                                         <td>{new Date(i?.releasedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</td>
                                         <td className={"flex gap-4 justify-center"}>
                                             <h1 className={"action-icon hover:text-black"}><MdEditSquare/></h1>
-                                            <h1 className={"action-icon hover:text-red-800"}><MdDelete /></h1>
+                                            <h1 onClick={() => {
+                                                if (window.confirm("Are you sure you want to delete this comic item?")) {
+                                                    deleteByIdApi.mutate(i?.id);
+                                                }}}
+                                                className={"action-icon hover:text-red-800"}><MdDelete /></h1>
                                         </td>
                                     </tr>
                                 )
@@ -79,6 +97,45 @@ const ManageComic = () =>{
                         </tbody>
                     </table>
                 </div>
+
+                {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                <dialog id="my_modal_3" className="modal w-4/12 h-[29rem] mr-80 shadow-2xl transform rounded-2xl ">
+                    <div className="modal-box">
+                        <form method="dialog" className={"px-6 py-6"}>
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn w-8 h-8 rounded-full hover:bg-gray-200 btn-ghost absolute right-2 top-2">✕</button>
+                            <h3 className="font-bold text-2xl">Add Comic</h3>
+                            <div className={"w-full h-12 border-solid mt-6 border rounded-xl border-gray-300 flex items-center pl-4 pr-2"}>
+                                <select className={"w-full outline-none cursor-pointer"}>
+                                    <option disabled selected>Select Genre</option>
+                                    <option>Genre1</option>
+                                </select>
+                            </div>
+                            <div className={"w-full h-12 border-solid border rounded-xl border-gray-300 mt-5 flex items-center pl-4 pr-2"}>
+                                <input type={"text"} placeholder={"Enter Comic Name"} className={"w-full outline-none appearance-none"} />
+                            </div>
+                            <div className={"w-full h-12 border-solid border rounded-xl border-gray-300 mt-5 flex items-center pl-4 pr-2"}>
+                                <input type={"text"} placeholder={"Enter Author's Name"} className={"w-full outline-none appearance-none"} />
+                            </div>
+                            <div className={"w-full flex mt-5"}>
+                                <div className={"w-5/12 justify-between items-center"}>
+                                    <h1 className={"text-lg pl-1"}>Released date: </h1>
+                                    <div className={"w-full h-12 border-solid border rounded-xl border-gray-300 flex items-center px-2"}>
+                                        <input type={"date"} placeholder={"Enter Comic Name"} className={"outline-none appearance-none text-gray-400"} />
+                                    </div>
+                                </div>
+                                <div className={"w-7/12 justify-between items-center pl-1"}>
+                                    <h1 className={"text-lg pl-1"}>Select Image: </h1>
+                                    <div className={"w-full h-12 justify-between border-solid border rounded-xl border-gray-300 flex items-center pl-1"}>
+                                        <input type={"file"} className={"text-gray-400"}/>
+                                    </div>
+                                </div>
+                            </div>
+                            <h1 className={"btn-add w-24 h-12 absolute bottom-6 right-6"}>Add</h1>
+                        </form>
+                    </div>
+                </dialog>
+
             </div>
         </>
     )

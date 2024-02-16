@@ -49,6 +49,7 @@ const AdminSidebar = () =>{
 
                 <div className={"sidebar-btn-div"}>
                     <div className={"sidebar-btn flex items-center rounded-xl p-2 cursor-pointer backdrop-blur-3xl transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"}>
+                        {/*<FaUserCircle style={{fontSize:"1.6rem",marginRight:"7px"}}/>*/}
                         <img src={adminImage} alt={"Admin-Image"} className={"rounded-lg w-8 h-8 bg-center mr-2 opacity-95"} style={{objectFit: 'cover' }}/>
                         <h1 className={"gilroy-semibold text-sm mr-1"}>Nirajan Mahato <h4 className={"-mt-1"} style={{fontSize:"0.6rem"}}>nirajanmahato44@gmail.com</h4> </h1>
                         <span><TbLogout2 style={{fontSize:"1.6rem",color:"gray"}}/></span>
