@@ -5,24 +5,48 @@ import {MdDelete, MdEditSquare} from "react-icons/md";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import axios from "axios";
 import {useState} from "react";
+import {useForm} from "react-hook-form";
 
 
 const ManageGenre = () =>{
 
     const[search, setSearch] = useState('');
 
+    // Sending data to backend
+    const {register,
+    handleSubmit,
+    formState,
+    reset} = useForm();
+
+    const {errors} = formState;
+
+    const useApiCall = useMutation({
+        mutationKey:["POST_GENRE_DATA"],
+        mutationFn:(payload)=>{
+            console.log(payload)
+            return axios.post("http://localhost:8082/genre/save",payload)
+        },onSuccess: () => {
+            reset();
+            refetch();
+        }
+    })
+
+    const onSubmit=(value)=>{
+        useApiCall.mutate(value)
+    }
+
     // Fetching genre from API
-    const{data:genreData} = useQuery({
+    const{data:genreData,refetch} = useQuery({
         queryKey:["GET_GENRE"],
         queryFn(){
             return axios.get("http://localhost:8082/genre/getAll")
         }
     })
 
-    // //Searching data
-    // const filteredData = genreData?.data.filter((i) =>
-    //     i.name.toLowerCase().includes(search.toLowerCase())
-    // );
+    //Searching data
+    const filteredData = genreData?.data.filter((i) => {
+        return search.toLowerCase() === '' ? i :i?.genre.toLowerCase().includes(search);
+    })
 
     //Deleting comic Genre
     const deleteByIdApi=useMutation(
@@ -31,16 +55,24 @@ const ManageGenre = () =>{
             mutationFn(id){
                 return axios.delete("http://localhost:8082/genre/deleteById/"+id);
             }
-            // ,onSuccess(){refetch()}
+            ,onSuccess(){refetch()}
         }
     )
+
+    // Function to close the modal and reset the form fields
+    const closeModalAndReset = () => {
+        const modal = document.getElementById('my_modal_3');
+        const form = modal.querySelector('form');
+        modal.close();
+        form.reset();
+    };
 
     return(
         <>
             <div className={"manage-genre-div"}>
                 <AdminSidebar/>
-                <div className={"ml-60 px-6 flex flex-col items-center"}>
-                    <div className={"pt-2 w-full flex items-center justify-between"}>
+                <div className={"ml-60 px-6 pt-2 pb-24 flex flex-col items-center"}>
+                    <div className={"w-full flex items-center justify-between"}>
                         <div className={"w-2/12 p-2"}>
                             <h1 className={"gilroy-bold text-3xl"}>Genres</h1>
                             <h4 className={"font-semibold text-sm"}>12 genre found</h4>
@@ -65,8 +97,7 @@ const ManageGenre = () =>{
                             </tr>
                         </thead>
                         <tbody>
-                        {
-                            genreData?.data.map((i) =>{
+                        {filteredData?.map((i) =>{
                                 return(
                                     <tr  key={i?.id} className={"h-12 border-b-cyan-950 border-b"}>
                                         <td>{i?.id}</td>
@@ -88,16 +119,17 @@ const ManageGenre = () =>{
                 {/* You can open the modal using document.getElementById('ID').showModal() method */}
                 <dialog id="my_modal_3" className="modal w-4/12 h-64 mr-80 shadow-xl transform rounded-2xl ">
                     <div className="modal-box">
-                        <form method="dialog" className={"px-6 py-6"}>
+                        <form method="dialog" className={"px-6 py-6"} onSubmit={handleSubmit(onSubmit)}>
                             {/* if there is a button in form, it will close the modal */}
-                            <button className="btn w-8 h-8 rounded-full hover:bg-gray-200 btn-ghost absolute right-2 top-2">✕</button>
+                            <button type={"button"} onClick={closeModalAndReset} className="btn w-8 h-8 rounded-full hover:bg-gray-200 btn-ghost absolute right-2 top-2">✕</button>
                             <h3 className="font-bold text-2xl">Add Genre</h3>
                             <div className={"w-full h-12 border-solid border rounded-xl border-gray-300 mt-10 flex items-center pl-4 pr-2"}>
-                                <input type={"text"} placeholder={"Enter Genre Name"} className={"w-full outline-none appearance-none"} />
+                                <input type={"text"} placeholder={"Enter Genre Name"} className={"w-full outline-none appearance-none"} {...register("genre",{required:"Genre Name is required!!"})} />
                             </div>
-                            <div className={"btn-style2 gilroy-medium w-3/12 absolute bottom-6 right-6"}>
-                                <h3 className={"h-11 bg-black"}><a>Add</a></h3>
-                            </div>
+                            {/*<h6 className={"text-xs pl-2 text-gray-500"}>{errors?.genre?.message}</h6>*/}
+
+                            <button type={"submit"} className={"btn-add w-24 h-12 absolute bottom-6 right-6"}><a>Add</a></button>
+
                         </form>
                     </div>
                 </dialog>

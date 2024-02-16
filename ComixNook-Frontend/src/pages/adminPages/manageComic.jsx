@@ -4,27 +4,56 @@ import {MdDelete, MdEditSquare} from "react-icons/md";
 import {useState} from "react";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import axios from "axios";
-import {HiPlusCircle} from "react-icons/hi";
 import {FaPlusCircle} from "react-icons/fa";
+import {useForm} from "react-hook-form";
 
 
 const ManageComic = () =>{
 
     const[search, setSearch] = useState('');
 
+    // Sending data to backend
+    const {register,
+        handleSubmit,
+        formState,
+        reset} = useForm();
+
+    const {errors} = formState;
+
+    const useApiCall = useMutation({
+        mutationKey:["POST_COMIC_DATA"],
+        mutationFn:(payload)=>{
+            console.log(payload)
+            return axios.post("http://localhost:8082/item/save",payload)
+        },onSuccess: () => {
+            reset();
+            refetch();
+        }
+    })
+
+    const onSubmit=(value)=>{
+        useApiCall.mutate(value)
+    }
+
     // Fetching comic item from API
-    const{data:itemData} = useQuery({
+    const{data:itemData,refetch} = useQuery({
         queryKey:["GET_COMIC_ITEM"],
         queryFn(){
             return axios.get("http://localhost:8082/item/getAll")
         }
     })
-    // console.log(itemData?.data);
+    // Fetching genre from API
+    const{data:genreData} = useQuery({
+        queryKey:["GET_GENRE"],
+        queryFn(){
+            return axios.get("http://localhost:8082/genre/getAll")
+        }
+    })
 
-    // //Searching data
-    // const filteredData = itemData?.data.filter((i) =>
-    //     i.name.toLowerCase().includes(search.toLowerCase())
-    // );
+    //Searching comics
+    const filteredData = itemData?.data.filter((i) => {
+        return search.toLowerCase() === '' ? i :i?.itemName.toLowerCase().includes(search);
+    })
 
     //Deleting comic Item
     const deleteByIdApi=useMutation(
@@ -33,16 +62,24 @@ const ManageComic = () =>{
             mutationFn(id){
                 return axios.delete("http://localhost:8082/item/deleteById/"+id);
             }
-            // ,onSuccess(){refetch()}
+            ,onSuccess(){refetch()}
         }
     )
+
+    // Function to close the modal and reset the form fields
+    const closeModalAndReset = () => {
+        const modal = document.getElementById('my_modal_3');
+        const form = modal.querySelector('form');
+        modal.close();
+        form.reset();
+    };
 
     return(
         <>
             <div className={"manage-comic-div"}>
                 <AdminSidebar/>
-                <div className={"ml-60 px-6 flex flex-col items-center"}>
-                    <div className={"pt-2 w-full flex items-center justify-between"}>
+                <div className={"ml-60 px-6 pt-2 pb-24 flex flex-col items-center"}>
+                    <div className={"w-full flex items-center justify-between"}>
                         <div className={"w-2/12 p-2"}>
                             <h1 className={"gilroy-bold text-3xl"}>Comics</h1>
                             <h4 className={"font-semibold text-sm"}>12 comics found</h4>
@@ -72,8 +109,7 @@ const ManageComic = () =>{
                         </thead>
                         <tbody>
                         {
-                            itemData?.data.map((i) =>{
-                                
+                            filteredData?.map((i) =>{
                                 return(
                                     <tr key={i?.id} className={"h-12 border-b-cyan-950 border-b"}>
                                         <td>{i?.itemId}</td>
@@ -101,14 +137,16 @@ const ManageComic = () =>{
                 {/* You can open the modal using document.getElementById('ID').showModal() method */}
                 <dialog id="my_modal_3" className="modal w-4/12 h-[29rem] mr-80 shadow-2xl transform rounded-2xl ">
                     <div className="modal-box">
-                        <form method="dialog" className={"px-6 py-6"}>
+                        <form method="dialog" className={"px-6 py-6"} onSubmit={handleSubmit(onSubmit)}>
                             {/* if there is a button in form, it will close the modal */}
-                            <button className="btn w-8 h-8 rounded-full hover:bg-gray-200 btn-ghost absolute right-2 top-2">✕</button>
+                            <button type={"button"} onClick={closeModalAndReset} className="btn w-8 h-8 rounded-full hover:bg-gray-200 btn-ghost absolute right-2 top-2">✕</button>
                             <h3 className="font-bold text-2xl">Add Comic</h3>
                             <div className={"w-full h-12 border-solid mt-6 border rounded-xl border-gray-300 flex items-center pl-4 pr-2"}>
                                 <select className={"w-full outline-none cursor-pointer"}>
                                     <option disabled selected>Select Genre</option>
-                                    <option>Genre1</option>
+                                    {genreData && genreData.data.map((i) => (
+                                        <option key={i.id} value={i.id}>{i.genre}</option>
+                                    ))}
                                 </select>
                             </div>
                             <div className={"w-full h-12 border-solid border rounded-xl border-gray-300 mt-5 flex items-center pl-4 pr-2"}>
@@ -131,7 +169,7 @@ const ManageComic = () =>{
                                     </div>
                                 </div>
                             </div>
-                            <h1 className={"btn-add w-24 h-12 absolute bottom-6 right-6"}>Add</h1>
+                            <button type={"submit"} className={"btn-add w-24 h-12 absolute bottom-6 right-6"}>Add</button>
                         </form>
                     </div>
                 </dialog>
