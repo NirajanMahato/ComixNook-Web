@@ -26,7 +26,7 @@ public class ItemServiceImpl implements ItemService {
     private final ItemRepo itemRepo;
     private final GenreRepo genreRepo;
 
-    private final String UPLOAD_DIRECTORY = new StringBuilder().append(System.getProperty("user.dir")).append("/Comix-Images/Item-images").toString();
+    private final String UPLOAD_DIRECTORY = new StringBuilder().append(System.getProperty("user.dir")).append("/Comix-Images/item-images").toString();
     ImageToBase64 imageToBase64 = new ImageToBase64();
 
     @Override
@@ -60,11 +60,16 @@ public class ItemServiceImpl implements ItemService {
     public List<Item> getAll(){
         List<Item> items = itemRepo.findAll();
         items = items.stream().map(item -> {
-            item.setItemImage(imageToBase64.getImageBase64("/Items-images/" + item.getItemImage()));
+            item.setItemImage(imageToBase64.getImageBase64("/item-images/" + item.getItemImage()));
             return item;
         }).collect(Collectors.toList());
         return items;
     }
+
+//    @Override
+//    public List<Item> getAll(){
+//        return itemRepo.findAll();
+//    }
 
     @Override
     public Optional<Item> getItemById(Long id) {
