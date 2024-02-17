@@ -6,19 +6,23 @@ import {useMutation, useQuery} from "@tanstack/react-query";
 import axios from "axios";
 import {FaPlusCircle} from "react-icons/fa";
 import {useForm} from "react-hook-form";
+import {useLocation} from "react-router-dom";
 
 
 const ManageComic = () =>{
+
+    const location = useLocation(); // Use useLocation to get the current location
+    const currentLocation = location.pathname;
 
     const[search, setSearch] = useState('');
 
     // Sending data to backend
     const {register,
         handleSubmit,
-        formState,
+        // formState,
         reset} = useForm();
 
-    const {errors} = formState;
+    // const {errors} = formState;
 
     const useApiCall = useMutation({
         mutationKey:["POST_COMIC_DATA"],
@@ -32,7 +36,14 @@ const ManageComic = () =>{
     })
 
     const onSubmit=(value)=>{
-        useApiCall.mutate(value)
+        console.log(value);
+        const fd = new FormData();
+        fd.append("itemName",value?.itemName)
+        fd.append("author",value?.author)
+        fd.append("releasedDate",value?.releasedDate)
+        fd.append("genreId",value?.genreId)
+        fd.append("itemImage",value?.itemImage[0])
+        useApiCall.mutate(fd)
     }
 
     // Fetching comic item from API
@@ -74,18 +85,20 @@ const ManageComic = () =>{
         form.reset();
     };
 
+    // console.log(filteredData)
+
     return(
         <>
             <div className={"manage-comic-div"}>
-                <AdminSidebar/>
+                <AdminSidebar activePage={currentLocation}/>
                 <div className={"ml-60 px-6 pt-2 pb-24 flex flex-col items-center"}>
                     <div className={"w-full flex items-center justify-between"}>
                         <div className={"w-2/12 p-2"}>
                             <h1 className={"gilroy-bold text-3xl"}>Comics</h1>
-                            <h4 className={"font-semibold text-sm"}>12 comics found</h4>
+                            <h4 className={"font-semibold text-sm text-gray-600"}>16 comics found</h4>
                         </div>
                         <div className={"w-4/12 h-10 bg-gray-200 flex items-center justify-between rounded-xl px-2"}>
-                            <input type={"search"} placeholder={"Search Comics"} className={"w-full bg-transparent"} value={search} onChange={(e)=> setSearch(e.target.value)}/>
+                            <input type={"search"} placeholder={"Search Comics"} className={"pl-1 w-full bg-transparent"} value={search} onChange={(e)=> setSearch(e.target.value)}/>
                             <span className={"ml-1 text-xl cursor-pointer"}><IoSearch /></span>
                         </div>
                         <div className={"btn-style2 bg-black rounded-xl"}>
@@ -111,18 +124,20 @@ const ManageComic = () =>{
                         {
                             filteredData?.map((i) =>{
                                 return(
-                                    <tr key={i?.id} className={"h-12 border-b-cyan-950 border-b"}>
+                                    <tr key={i?.itemId} className={"h-12 border-b-cyan-950 border-b"}>
                                         <td>{i?.itemId}</td>
                                         <td>{i?.itemName}</td>
                                         <td>{i?.author}</td>
                                         <td>{i?.genreId?.genre}</td>
-                                        <td>{i?.itemImage}</td>
+                                        <td>
+                                            <h1 className={"flex justify-center"}><img src={'data:image/jpeg;base64,'+i?.itemImage}  width={"45px"}/></h1>
+                                        </td>
                                         <td>{new Date(i?.releasedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</td>
                                         <td className={"flex gap-4 justify-center"}>
                                             <h1 className={"action-icon hover:text-black"}><MdEditSquare/></h1>
                                             <h1 onClick={() => {
                                                 if (window.confirm("Are you sure you want to delete this comic item?")) {
-                                                    deleteByIdApi.mutate(i?.id);
+                                                    deleteByIdApi.mutate(i?.itemId);
                                                 }}}
                                                 className={"action-icon hover:text-red-800"}><MdDelete /></h1>
                                         </td>
@@ -142,7 +157,7 @@ const ManageComic = () =>{
                             <button type={"button"} onClick={closeModalAndReset} className="btn w-8 h-8 rounded-full hover:bg-gray-200 btn-ghost absolute right-2 top-2">✕</button>
                             <h3 className="font-bold text-2xl">Add Comic</h3>
                             <div className={"w-full h-12 border-solid mt-6 border rounded-xl border-gray-300 flex items-center pl-4 pr-2"}>
-                                <select className={"w-full outline-none cursor-pointer"}>
+                                <select className={"w-full outline-none cursor-pointer"} {...register("genreId",{ required: true })}>
                                     <option disabled selected>Select Genre</option>
                                     {genreData && genreData.data.map((i) => (
                                         <option key={i.id} value={i.id}>{i.genre}</option>
@@ -150,22 +165,22 @@ const ManageComic = () =>{
                                 </select>
                             </div>
                             <div className={"w-full h-12 border-solid border rounded-xl border-gray-300 mt-5 flex items-center pl-4 pr-2"}>
-                                <input type={"text"} placeholder={"Enter Comic Name"} className={"w-full outline-none appearance-none"} />
+                                <input type={"text"} placeholder={"Enter Comic Name"} className={"w-full outline-none appearance-none"} {...register("itemName",{required:"Item name is required"})}/>
                             </div>
                             <div className={"w-full h-12 border-solid border rounded-xl border-gray-300 mt-5 flex items-center pl-4 pr-2"}>
-                                <input type={"text"} placeholder={"Enter Author's Name"} className={"w-full outline-none appearance-none"} />
+                                <input type={"text"} placeholder={"Enter Author's Name"} className={"w-full outline-none appearance-none"} {...register("author",{required:"Author name is required"})}/>
                             </div>
                             <div className={"w-full flex mt-5"}>
                                 <div className={"w-5/12 justify-between items-center"}>
                                     <h1 className={"text-lg pl-1"}>Released date: </h1>
                                     <div className={"w-full h-12 border-solid border rounded-xl border-gray-300 flex items-center px-2"}>
-                                        <input type={"date"} placeholder={"Enter Comic Name"} className={"outline-none appearance-none text-gray-400"} />
+                                        <input type={"date"} placeholder={"Enter Comic Name"} className={"outline-none appearance-none text-gray-400"} {...register("releasedDate")}/>
                                     </div>
                                 </div>
                                 <div className={"w-7/12 justify-between items-center pl-1"}>
                                     <h1 className={"text-lg pl-1"}>Select Image: </h1>
                                     <div className={"w-full h-12 justify-between border-solid border rounded-xl border-gray-300 flex items-center pl-1"}>
-                                        <input type={"file"} className={"text-gray-400"}/>
+                                        <input type={"file"} className={"text-gray-400"} {...register("itemImage")}/>
                                     </div>
                                 </div>
                             </div>

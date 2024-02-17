@@ -1,6 +1,6 @@
 import {FaUserCog} from "react-icons/fa";
 import {BiSolidCategoryAlt} from "react-icons/bi";
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {MdCollectionsBookmark, MdSpaceDashboard} from "react-icons/md";
 import comixNook from "../../../../public/Logos/ComixNookLogo.png"
 import adminImage from "../../../../public/Logos/DSC03203-01.jpeg"
@@ -8,7 +8,7 @@ import "./adminSidebar.css"
 import {TbLogout2} from "react-icons/tb";
 
 
-const AdminSidebar = () =>{
+const AdminSidebar = ({ activePage }) => {
     return(
         <>
             <div className={"admin-sidebar"}>
@@ -18,32 +18,32 @@ const AdminSidebar = () =>{
 
                 <div className={"sidebar-options"}>
                     <ul className={"sidebar-list"}>
-                        <NavLink to={"/AdminDashboard"}>
-                            <li className={'sidebar-list-item'}>
-                                <span><MdSpaceDashboard style={{fontSize:"18px",marginBottom:"-3px"}}/></span>
+                        <Link to={"/AdminDashboard"}>
+                            <li className={`sidebar-list-item ${activePage === "/AdminDashboard" ? "activeAdmin" : ""}`}>
+                                <span><MdSpaceDashboard style={{fontSize:"18px"}}/></span>
                                 <a>Dashboard</a>
                             </li>
-                        </NavLink>
-                        <NavLink to={"/CustomerPage"}>
-                            <li className={`sidebar-list-item`}>
-                                <span><FaUserCog style={{fontSize:"18px",marginBottom:"-3px"}}/></span>
+                        </Link>
+                        <Link to={"/VisitorsPage"}>
+                            <li className={`sidebar-list-item ${activePage === "/VisitorsPage" ? "activeAdmin" : ""}`}>
+                                <span><FaUserCog style={{fontSize:"18px"}}/></span>
                                 <a>Visitors</a>
                             </li>
-                        </NavLink>
+                        </Link>
 
-                        <NavLink to={"/ManageGenre"}>
-                            <li className={`sidebar-list-item`}>
-                                <span><BiSolidCategoryAlt style={{fontSize:"18px",marginBottom:"-3px"}}/></span>
+                        <Link to={"/ManageGenre"}>
+                            <li className={`sidebar-list-item ${activePage === "/ManageGenre" ? "activeAdmin" : ""}`}>
+                                <span><BiSolidCategoryAlt style={{fontSize:"18px"}}/></span>
                                 <a>Genres</a>
                             </li>
-                        </NavLink>
+                        </Link>
 
-                        <NavLink to={"/ManageComic"}>
-                            <li className={`sidebar-list-item`}>
-                                <span><MdCollectionsBookmark style={{fontSize:"18px",marginBottom:"-3px"}}/></span>
+                        <Link to={"/ManageComic"}>
+                            <li className={`sidebar-list-item ${activePage === "/ManageComic" ? "activeAdmin" : ""}`}>
+                                <span><MdCollectionsBookmark style={{fontSize:"18px"}}/></span>
                                 <a>Manage Comics</a>
                             </li>
-                        </NavLink>
+                        </Link>
                     </ul>
                 </div>
 
@@ -54,7 +54,6 @@ const AdminSidebar = () =>{
                         <h1 className={"gilroy-semibold text-sm mr-1"}>Nirajan Mahato <h4 className={"-mt-1"} style={{fontSize:"0.6rem"}}>nirajanmahato44@gmail.com</h4> </h1>
                         <span><TbLogout2 style={{fontSize:"1.6rem",color:"gray"}}/></span>
                     </div>
-                    {/*<button type={"button"}><span><IoMdLogOut style={{fontSize:"1.3rem" ,marginBottom:"-3px",marginRight:"3px"}}/></span>Log Out</button>*/}
                 </div>
             </div>
         </>

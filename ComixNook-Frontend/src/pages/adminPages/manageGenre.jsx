@@ -1,4 +1,3 @@
-import AdminSidebar from "./adminComponents/adminSidebar.jsx";
 import {IoSearch} from "react-icons/io5";
 import {FaPlus} from "react-icons/fa";
 import {MdDelete, MdEditSquare} from "react-icons/md";
@@ -6,6 +5,8 @@ import {useMutation, useQuery} from "@tanstack/react-query";
 import axios from "axios";
 import {useState} from "react";
 import {useForm} from "react-hook-form";
+import {useLocation} from "react-router-dom";
+import AdminSidebar from "./adminComponents/adminSidebar.jsx";
 
 
 const ManageGenre = () =>{
@@ -67,18 +68,21 @@ const ManageGenre = () =>{
         form.reset();
     };
 
+    const location = useLocation(); // Use useLocation to get the current location
+    const currentLocation = location.pathname;
+
     return(
         <>
             <div className={"manage-genre-div"}>
-                <AdminSidebar/>
+                <AdminSidebar activePage={currentLocation}/>
                 <div className={"ml-60 px-6 pt-2 pb-24 flex flex-col items-center"}>
                     <div className={"w-full flex items-center justify-between"}>
                         <div className={"w-2/12 p-2"}>
                             <h1 className={"gilroy-bold text-3xl"}>Genres</h1>
-                            <h4 className={"font-semibold text-sm"}>12 genre found</h4>
+                            <h4 className={"font-semibold text-sm text-gray-600"}>7 genre found</h4>
                         </div>
                         <div className={"w-4/12 h-10 bg-gray-200 flex items-center justify-between rounded-xl px-2"}>
-                            <input type={"search"} placeholder={"Search Genres"} className={"w-full bg-transparent"} value={search} onChange={(e)=> setSearch(e.target.value)}/>
+                            <input type={"search"} placeholder={"Search Genres"} className={"w-full pl-1 bg-transparent"} value={search} onChange={(e)=> setSearch(e.target.value)}/>
                             <span className={"ml-1 text-xl cursor-pointer"}><IoSearch /></span>
                         </div>
                         <div className={"btn-style2 bg-black rounded-xl"}>
