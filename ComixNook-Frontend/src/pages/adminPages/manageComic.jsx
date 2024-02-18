@@ -95,7 +95,7 @@ const ManageComic = () =>{
                     <div className={"w-full flex items-center justify-between"}>
                         <div className={"w-2/12 p-2"}>
                             <h1 className={"gilroy-bold text-3xl"}>Comics</h1>
-                            <h4 className={"font-semibold text-sm text-gray-600"}>16 comics found</h4>
+                            <h4 className={"font-semibold text-sm text-gray-600"}>{filteredData?.length} comic found</h4>
                         </div>
                         <div className={"w-4/12 h-10 bg-gray-200 flex items-center justify-between rounded-xl px-2"}>
                             <input type={"search"} placeholder={"Search Comics"} className={"pl-1 w-full bg-transparent"} value={search} onChange={(e)=> setSearch(e.target.value)}/>
@@ -122,7 +122,8 @@ const ManageComic = () =>{
                         </thead>
                         <tbody>
                         {
-                            filteredData?.map((i) =>{
+                            filteredData?.sort((a, b) => a.id - b.id)
+                                .map((i) =>{
                                 return(
                                     <tr key={i?.itemId} className={"h-12 border-b-cyan-950 border-b"}>
                                         <td>{i?.itemId}</td>

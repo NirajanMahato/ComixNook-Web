@@ -6,9 +6,9 @@ import playStore from "../../../public/Logos/app-store-png-logo-33123.png";
 const Footer = () =>{
     return(
         <>
-            <div className={"w-full h-60 text-white flex items-center justify-between px-10"} style={{backgroundColor:"#222222"}}>
+            <div className={"w-full md:h-60 h-36 text-white flex items-center justify-between md:px-10 px-3"} style={{backgroundColor:"#222222"}}>
                 <div className={"flex items-center flex-col"}>
-                    <h1 className={"md:text-4xl text-3xl gilroy-bold"} contentEditable={"true"}>Get in touch</h1>
+                    <h1 className={"md:text-4xl text-2xl gilroy-bold"} contentEditable={"true"}>Get in touch</h1>
                     <h1 className={"md:text-xl hidden md:flex gilroy-semibold"}>Lots of content is waiting for you on our social pages</h1>
                     <div className={"social-icons"}>
                         <ul className={"flex"}>
@@ -26,11 +26,11 @@ const Footer = () =>{
                         <li>Contact us</li>
                     </ul>
                     <ul className={"gap-2 flex flex-col"}>
-                        <li>About us</li>
+                        <li>Contact us</li>
                         <li>About us</li>
                     </ul>
                 </div>
-                <div className={""}>
+                <div className={"md:w-40 w-3/12"}>
                     <a href={"https://play.google.com/store/apps/category/COMICS?hl=en&gl=US&pli=1"} target={"_blank"} rel="noopener noreferrer">
                         <img src={playStore} alt={"playstore"} className={"md:w-40 w-32 cursor-pointer"}/>
                     </a>

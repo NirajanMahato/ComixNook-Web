@@ -24,8 +24,8 @@
 
 @media screen and (max-width: 850px) {
     .social-icons li {
-        padding: 5px;
-        font-size: 0.8rem;
+        padding: 3px;
+        font-size: 0.6rem;
         margin: 6px;
     }
 }

@@ -79,7 +79,7 @@ const ManageGenre = () =>{
                     <div className={"w-full flex items-center justify-between"}>
                         <div className={"w-2/12 p-2"}>
                             <h1 className={"gilroy-bold text-3xl"}>Genres</h1>
-                            <h4 className={"font-semibold text-sm text-gray-600"}>7 genre found</h4>
+                            <h4 className={"font-semibold text-sm text-gray-600"}>{filteredData?.length} genre found</h4>
                         </div>
                         <div className={"w-4/12 h-10 bg-gray-200 flex items-center justify-between rounded-xl px-2"}>
                             <input type={"search"} placeholder={"Search Genres"} className={"w-full pl-1 bg-transparent"} value={search} onChange={(e)=> setSearch(e.target.value)}/>
@@ -91,7 +91,7 @@ const ManageGenre = () =>{
                             </h3>
                         </div>
                     </div>
-                    <table className={"mt-8 w-10/12 text-xl rounded-xl "}>
+                    <table className={"mt-8 w-10/12 text-lg rounded-xl "}>
                         <thead className={"h-12 text-white bg-gray-600 rounded-xl gilroy-semibold"}>
                             <tr>
                                 <th className={"px-2"}>ID</th>
@@ -101,7 +101,8 @@ const ManageGenre = () =>{
                             </tr>
                         </thead>
                         <tbody>
-                        {filteredData?.map((i) =>{
+                        {filteredData?.sort((a, b) => a.id - b.id)
+                            .map((i) =>{
                                 return(
                                     <tr  key={i?.id} className={"h-12 border-b-cyan-950 border-b"}>
                                         <td>{i?.id}</td>
