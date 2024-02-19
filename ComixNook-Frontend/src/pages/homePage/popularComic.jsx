@@ -27,7 +27,7 @@ const PopularComic = () =>{
 
     return(
         <>
-            <div className={"md:h-96 h-auto md:p-10 p-5 md:mb-52 "}>
+            <div className={"md:h-96 h-auto md:p-10 p-6 md:mb-52 "}>
                 <h1 className={"md:text-4xl text-3xl gilroy-bold"}>Popular this week.</h1>
                 <div className={"pt-6 md:flex justify-between flex-wrap"}>
                     {popularItems?.map((i) => {

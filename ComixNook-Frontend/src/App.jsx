@@ -11,6 +11,7 @@ import ManageComic from "./pages/adminPages/manageComic.jsx";
 import ManageGenre from "./pages/adminPages/manageGenre.jsx";
 import VisitorsPage from "./pages/adminPages/visitorsPage.jsx";
 import SingleComic from "./pages/singleProduct/singleComic.jsx";
+import SearchPage from "./pages/searchPage/searchPage.jsx";
 
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ function App() {
               {path: "/", element: <HomePage/>},
               {path: "/NewPage", element: <NewPage/>},
               {path: "/GenrePage", element: <GenrePage/>},
+              {path: "/SearchPage", element: <SearchPage/>},
               {path: "/SingleComic/:itemId", element: <SingleComic/>},
               {path: "/LoginPage", element: <LoginPage/>},
               {path: "/RegisterPage", element: <RegisterPage/>},

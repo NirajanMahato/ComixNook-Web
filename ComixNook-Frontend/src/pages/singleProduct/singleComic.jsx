@@ -27,21 +27,21 @@ const SingleComic = () =>{
                 <Navbar/>
                 {comicItem?.map((i)=> {
                     return(
-                        <div key={i?.itemId} className={"md:mt-14 md:p-10 p-5 h-[40rem] flex md:flex-row flex-col items-center justify-between"}>
+                        <div key={i?.itemId} className={"md:mt-14 md:p-10 p-6 md:h-[40rem] h-[49rem] flex md:flex-row flex-col items-center md:justify-between"}>
                             <div className={"md:w-5/12 w-11/12 md:mt-0 mt-20 bg-cover flex items-center justify-center rounded-xl"}>
                                 <img src={'data:image/jpeg;base64,'+i?.itemImage} className={"rounded-xl md:h-96 h-52 shadow-2xl object-cover"}/>
                             </div>
-                            <div className={"w-6/12 flex flex-col gap-4 ml-1"}>
+                            <div className={"md:w-6/12 w-full flex flex-col gap-4 ml-1 md:mt-0 mt-4"}>
                                 <h1 className={"text-3xl gilroy-bold -ml-1"}>{i?.itemName}</h1>
-                                <h4 className={"text-gray-500"}>{i?.itemDescription}</h4>
-                                <div className={"flex gap-20 text-lg gilroy-semibold"}>
+                                <h4 className={"text-gray-500 md:text-base text-xs"}>{i?.itemDescription}</h4>
+                                <div className={"flex md:flex-row flex-col md:gap-20 gap-2 text-lg gilroy-semibold"}>
                                     <h2 className={""}>Genre : {i?.genreId?.genre}</h2>
-                                    <h2 className={" "}>
+                                    <h2 className={"md:mt-0 -mt-2"}>
                                         Release Date : {}
                                         {new Date(i?.releasedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
                                     </h2>
                                 </div>
-                                <a href={i?.downloadLink} className={"btn-style2 w-3/12"}>
+                                <a href={i?.downloadLink} className={"btn-style2 md:w-3/12 w-5/12"}>
                                     <h3 className={"bg-black h-12 gilroy-semibold transition-effect"}><a>Download</a></h3>
                                 </a>
                             </div>

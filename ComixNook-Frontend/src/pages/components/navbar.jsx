@@ -1,9 +1,8 @@
 import {Component} from "react";
 import "./navbar.css"
-import { Link, NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import comixNook from "../../../public/Logos/ComixNookLogo.png"
-import {FaRegHeart, FaSearch} from "react-icons/fa";
-import {RiHeart2Line} from "react-icons/ri";
+import {FaSearch} from "react-icons/fa";
 
 class Navbar extends Component{
 
@@ -34,14 +33,14 @@ class Navbar extends Component{
                         <li>
                             <NavLink to={"/NewPage"}>New</NavLink>
                         </li>
-                        <div className={"navbar-search-wrapper"}>
-                            <input type={"search"} placeholder={"SEARCH"}/>
-                            <span className={"animate-pulse"}><FaSearch/></span>
-                        </div>
+                        <Link to={'/SearchPage'}><div className={"navbar-search-wrapper"}>
+                            <input type={"search"} placeholder={"Search"}/>
+                            <span className={"animate-pulse search-span"}><FaSearch/></span>
+                        </div></Link>
                     </div>
-                    <div className={"favorite-icon"}>
-                        <FaRegHeart style={{fontSize:"1.4rem"}}/>
-                    </div>
+                    {/*<div className={"favorite-icon"}>*/}
+                    {/*    <FaRegHeart style={{fontSize:"1.4rem"}}/>*/}
+                    {/*</div>*/}
                     <div className={"navbar-right btn-style"} >
                         <Link to={'/LoginPage'}><h3><a>Sign-Up</a></h3></Link>
                     </div>
