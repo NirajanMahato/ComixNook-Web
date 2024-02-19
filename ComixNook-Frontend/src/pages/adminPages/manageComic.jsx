@@ -39,8 +39,9 @@ const ManageComic = () =>{
         console.log(value);
         const fd = new FormData();
         fd.append("itemName",value?.itemName)
-        fd.append("author",value?.author)
         fd.append("releasedDate",value?.releasedDate)
+        fd.append("itemDescription",value?.itemDescription)
+        fd.append("downloadLink",value?.downloadLink)
         fd.append("genreId",value?.genreId)
         fd.append("itemImage",value?.itemImage[0])
         useApiCall.mutate(fd)
@@ -113,7 +114,7 @@ const ManageComic = () =>{
                         <tr>
                             <th className={"px-2"}>ID</th>
                             <th className={"px-20"}>Comics Name</th>
-                            <th className={"px-10"}>Author</th>
+                            {/*<th className={"px-10"}>Author</th>*/}
                             <th className={"px-6"}>Genre</th>
                             <th className={"px-6"}>Image</th>
                             <th className={"px-4"}>Released date</th>
@@ -128,7 +129,7 @@ const ManageComic = () =>{
                                     <tr key={i?.itemId} className={"h-12 border-b-cyan-950 border-b"}>
                                         <td>{i?.itemId}</td>
                                         <td>{i?.itemName}</td>
-                                        <td>{i?.author}</td>
+                                        {/*<td>{i?.author}</td>*/}
                                         <td>{i?.genreId?.genre}</td>
                                         <td>
                                             <h1 className={"flex justify-center"}><img src={'data:image/jpeg;base64,'+i?.itemImage}  width={"45px"}/></h1>
@@ -157,7 +158,7 @@ const ManageComic = () =>{
                             {/* if there is a button in form, it will close the modal */}
                             <button type={"button"} onClick={closeModalAndReset} className="btn w-8 h-8 rounded-full hover:bg-gray-200 btn-ghost absolute right-2 top-2">✕</button>
                             <h3 className="font-bold text-2xl">Add Comic</h3>
-                            <div className={"w-full h-12 border-solid mt-6 border rounded-xl border-gray-300 flex items-center pl-4 pr-2"}>
+                            <div className={"w-full h-12 border-solid mt-6 border rounded-xl border-gray-300 flex items-center pl-3 pr-2"}>
                                 <select className={"w-full outline-none cursor-pointer"} {...register("genreId",{ required: true })}>
                                     <option disabled selected>Select Genre</option>
                                     {genreData && genreData.data.map((i) => (
@@ -165,11 +166,17 @@ const ManageComic = () =>{
                                     ))}
                                 </select>
                             </div>
-                            <div className={"w-full h-12 border-solid border rounded-xl border-gray-300 mt-5 flex items-center pl-4 pr-2"}>
+                            <div className={"w-full h-12 border-solid border rounded-xl border-gray-300 mt-5 flex items-center pl-3 pr-2"}>
                                 <input type={"text"} placeholder={"Enter Comic Name"} className={"w-full outline-none appearance-none"} {...register("itemName",{required:"Item name is required"})}/>
                             </div>
-                            <div className={"w-full h-12 border-solid border rounded-xl border-gray-300 mt-5 flex items-center pl-4 pr-2"}>
-                                <input type={"text"} placeholder={"Enter Author's Name"} className={"w-full outline-none appearance-none"} {...register("author",{required:"Author name is required"})}/>
+
+                            <div className={"flex justify-between mt-5"}>
+                                <div className={"w-5/12 h-12 border-solid border rounded-xl border-gray-300 flex items-center pl-3 pr-2 mr-1"}>
+                                    <input type={"text"} placeholder={"Enter Description"} className={"w-full outline-none appearance-none"} {...register("itemDescription",{required:"itemDescription name is required"})}/>
+                                </div>
+                                <div className={"w-7/12 h-12 border-solid border rounded-xl border-gray-300 flex items-center pl-3 pr-2"}>
+                                    <input type={"text"} placeholder={"Enter Download Link"} className={"w-full outline-none appearance-none"} {...register("downloadLink",{required:"downloadLink name is required"})}/>
+                                </div>
                             </div>
                             <div className={"w-full flex mt-5"}>
                                 <div className={"w-5/12 justify-between items-center"}>

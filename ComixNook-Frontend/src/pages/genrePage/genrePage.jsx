@@ -7,7 +7,7 @@ const GenrePage = () => {
         <>
             <div className={"GenrePage-div"}>
                 <Navbar/>
-                <div className={""}>
+                <div className={"md:p-10 p-5 h-[43rem]"}>
 
                 </div>
                 <Footer/>

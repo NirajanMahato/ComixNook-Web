@@ -234,7 +234,13 @@ td{
   color: #5b5b5b;
 }
 
-
+/*transiton effeect for buttons*/
+.transition-effect {
+  transition: transform 500ms ease-in-out;
+}
+.transition-effect:hover {
+  transform: translateY(-1px) scale(1.06);
+}
 /*button {*/
 /*  border-radius: 8px;*/
 /*  border: 1px solid transparent;*/
