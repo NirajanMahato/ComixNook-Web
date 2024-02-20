@@ -7,11 +7,13 @@ import LoginPage from "./pages/login&Register/loginPage.jsx";
 import RegisterPage from "./pages/login&Register/registerPage.jsx";
 import ForgetPassword from "./pages/login&Register/forgetPassword.jsx";
 import GenrePage from "./pages/genrePage/genrePage.jsx";
-import ManageComic from "./pages/adminPages/manageComic.jsx";
-import ManageGenre from "./pages/adminPages/manageGenre.jsx";
+import ManageComic from "./pages/adminPages/manageComic/manageComic.jsx";
+import ManageGenre from "./pages/adminPages/manageGenre/manageGenre.jsx";
 import VisitorsPage from "./pages/adminPages/visitorsPage.jsx";
 import SingleComic from "./pages/singleProduct/singleComic.jsx";
 import SearchPage from "./pages/searchPage/searchPage.jsx";
+import EditGenre from "./pages/adminPages/manageGenre/editGenre.jsx";
+import EditComic from "./pages/adminPages/manageComic/editComic.jsx";
 
 
 const queryClient = new QueryClient();
@@ -30,8 +32,10 @@ function App() {
               {path: "/RegisterPage", element: <RegisterPage/>},
               {path: "/ForgetPassword", element: <ForgetPassword/>},
               {path: "/AdminDashboard", element: <AdminDashboard/>},
-              {path: "/ManageComic", element: <ManageComic/>},
               {path: "/ManageGenre", element: <ManageGenre/>},
+              {path: "/EditGenre/:pk_id", element: <EditGenre/>},
+              {path: "/ManageComic", element: <ManageComic/>},
+              {path: "/EditComic/:pk_id", element: <EditComic/>},
               {path: "/VisitorsPage", element: <VisitorsPage/>},
           ])} />
         </QueryClientProvider>
