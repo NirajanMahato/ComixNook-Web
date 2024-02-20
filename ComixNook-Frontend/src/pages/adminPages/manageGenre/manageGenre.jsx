@@ -5,13 +5,14 @@ import {useMutation, useQuery} from "@tanstack/react-query";
 import axios from "axios";
 import {useState} from "react";
 import {useForm} from "react-hook-form";
-import {useLocation} from "react-router-dom";
-import AdminSidebar from "./adminComponents/adminSidebar.jsx";
+import {useLocation, useNavigate} from "react-router-dom";
+import AdminSidebar from "../adminComponents/adminSidebar.jsx";
 
 
 const ManageGenre = () =>{
 
     const[search, setSearch] = useState('');
+    const navigate = useNavigate();
 
     // Sending data to backend
     const {register,
@@ -107,7 +108,11 @@ const ManageGenre = () =>{
                                     <tr  key={i?.id} className={"h-12 border-b-cyan-950 border-b"}>
                                         <td>{i?.id}</td>
                                         <td>{i?.genre}</td>
-                                        <td><h1 className={"action-icon hover:text-black"}><MdEditSquare/></h1></td>
+                                        <td><h1 className={"action-icon hover:text-black"}
+                                                onClick={()=>{
+                                                    navigate("/EditGenre/"+i?.id);
+                                                    console.log(i?.id)
+                                                }}><MdEditSquare/></h1></td>
                                         <td><h1 onClick={() => {
                                             if (window.confirm("Are you sure you want to delete this comic item?")) {
                                                 deleteByIdApi.mutate(i?.id);

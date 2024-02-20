@@ -41,7 +41,8 @@ public class ItemServiceImpl implements ItemService {
 
         item.setItemName(itemPojo.getItemName());
         item.setReleasedDate(itemPojo.getReleasedDate());
-        item.setAuthor(itemPojo.getAuthor());
+        item.setItemDescription(itemPojo.getItemDescription());
+        item.setDownloadLink(itemPojo.getDownloadLink());
 
         if (itemPojo.getItemImage() != null) {
             Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, itemPojo.getItemImage().getOriginalFilename());

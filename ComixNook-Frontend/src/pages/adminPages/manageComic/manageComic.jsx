@@ -1,4 +1,4 @@
-import AdminSidebar from "./adminComponents/adminSidebar.jsx";
+import AdminSidebar from "../adminComponents/adminSidebar.jsx";
 import {IoSearch} from "react-icons/io5";
 import {MdDelete, MdEditSquare} from "react-icons/md";
 import {useState} from "react";
@@ -6,15 +6,16 @@ import {useMutation, useQuery} from "@tanstack/react-query";
 import axios from "axios";
 import {FaPlusCircle} from "react-icons/fa";
 import {useForm} from "react-hook-form";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 
 const ManageComic = () =>{
 
+    const[search, setSearch] = useState('');
+    const navigate = useNavigate();
+
     const location = useLocation(); // Use useLocation to get the current location
     const currentLocation = location.pathname;
-
-    const[search, setSearch] = useState('');
 
     // Sending data to backend
     const {register,
@@ -136,7 +137,11 @@ const ManageComic = () =>{
                                         </td>
                                         <td>{new Date(i?.releasedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</td>
                                         <td className={"flex gap-4 justify-center"}>
-                                            <h1 className={"action-icon hover:text-black"}><MdEditSquare/></h1>
+                                            <h1 className={"action-icon hover:text-black"}
+                                                onClick={()=>{
+                                                    navigate("/EditComic/"+i?.itemId);
+                                                    console.log(i?.id)
+                                                }}><MdEditSquare/></h1>
                                             <h1 onClick={() => {
                                                 if (window.confirm("Are you sure you want to delete this comic item?")) {
                                                     deleteByIdApi.mutate(i?.itemId);

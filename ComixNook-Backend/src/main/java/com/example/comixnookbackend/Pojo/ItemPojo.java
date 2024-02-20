@@ -23,7 +23,9 @@ public class ItemPojo {
 
     private LocalDate releasedDate;
 
-    private String author;
+    private String itemDescription;
+
+    private String downloadLink;
 
     private MultipartFile itemImage;
 

@@ -18,7 +18,7 @@ public class ItemController {
     private final ItemService itemService;
 
     @PostMapping("/save")
-    public String savePItem(@RequestBody @ModelAttribute ItemPojo itemPojo) throws IOException {
+    public String saveItem(@RequestBody @ModelAttribute ItemPojo itemPojo) throws IOException {
         itemService.saveItem(itemPojo);
         return "Item saved successfully";
     }
