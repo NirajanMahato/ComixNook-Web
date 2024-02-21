@@ -15,8 +15,8 @@ const Footer = () =>{
                             <a href={"https://www.facebook.com/nirajan.1224"} target={"_blank"} rel={"noreferrer"}><li><FaFacebookF /></li></a>
                             <a href={"https://www.instagram.com/nirajan__mahato/"} target={"_blank"} rel={"noreferrer"}><li><RiInstagramFill /></li></a>
                             <a href={"https://www.youtube.com/channel/UCyaStskMQyOdqz3SlQLBVew"} target={"_blank"} rel={"noreferrer"}><li><FaYoutube /></li></a>
-                            <a href={""} target={"_blank"} rel={"noreferrer"}><li><FaLinkedinIn /></li></a>
-                            <a href={""} target={"_blank"} rel={"noreferrer"}><li><FaDiscord /></li></a>
+                            <a href={"https://www.linkedin.com/in/nirajan-mahato-898b90285/"} target={"_blank"} rel={"noreferrer"}><li><FaLinkedinIn /></li></a>
+                            <a href={"https://discord.com/"} target={"_blank"} rel={"noreferrer"}><li><FaDiscord /></li></a>
                         </ul>
                     </div>
                 </div>

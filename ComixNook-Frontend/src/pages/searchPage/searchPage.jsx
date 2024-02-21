@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import axios from "axios";
 import {useQuery} from "@tanstack/react-query";
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {FaSearch} from "react-icons/fa";
 import Footer from "../components/footer.jsx";
 import comixNook from "../../../public/Logos/ComixNookLogo.png";
@@ -9,6 +9,12 @@ import comixNook from "../../../public/Logos/ComixNookLogo.png";
 const SearchPage = () => {
 
     const[search, setSearch] = useState('');
+
+    // Focus on the input field when the component mounts
+    const inputRef = useRef(null);
+    useEffect(() => {
+        inputRef.current.focus();
+    }, []); // Empty dependency array to run only on mount
 
     // Fetching comic item from API
     const { data: comicData } = useQuery({
@@ -36,7 +42,7 @@ const SearchPage = () => {
                             <Link to={'/'}><img src={comixNook} alt={"ComicNook"} width={"150px"}/></Link>
                         </h1>
                         <div className={"md:w-4/12 w-6/12 h-11 flex items-center justify-between rounded-3xl px-2 border-purple-950 border"}>
-                            <input type={"search"} placeholder={"Search Comics"} className={"w-full md:pl-32 pl-1 bg-transparent"} value={search} onChange={(e)=> setSearch(e.target.value)}/>
+                            <input type={"search"} ref={inputRef} placeholder={"Search Comics"} className={"w-full md:pl-32 pl-1 bg-transparent"} value={search} onChange={(e)=> setSearch(e.target.value)}/>
                             <span className={"animate-pulse search-span"}><FaSearch/></span>
                         </div>
                         <div className={"md:block hidden btn-style"} >
