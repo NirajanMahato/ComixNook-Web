@@ -17,10 +17,10 @@ const ManageGenre = () =>{
     // Sending data to backend
     const {register,
     handleSubmit,
-    formState,
+    // formState,
     reset} = useForm();
 
-    const {errors} = formState;
+    // const {errors} = formState;
 
     const useApiCall = useMutation({
         mutationKey:["POST_GENRE_DATA"],

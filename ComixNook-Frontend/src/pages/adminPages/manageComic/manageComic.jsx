@@ -115,7 +115,6 @@ const ManageComic = () =>{
                         <tr>
                             <th className={"px-2"}>ID</th>
                             <th className={"px-20"}>Comics Name</th>
-                            {/*<th className={"px-10"}>Author</th>*/}
                             <th className={"px-6"}>Genre</th>
                             <th className={"px-6"}>Image</th>
                             <th className={"px-4"}>Released date</th>
@@ -130,7 +129,6 @@ const ManageComic = () =>{
                                     <tr key={i?.itemId} className={"h-12 border-b-cyan-950 border-b"}>
                                         <td>{i?.itemId}</td>
                                         <td>{i?.itemName}</td>
-                                        {/*<td>{i?.author}</td>*/}
                                         <td>{i?.genreId?.genre}</td>
                                         <td>
                                             <h1 className={"flex justify-center"}><img src={'data:image/jpeg;base64,'+i?.itemImage}  width={"45px"}/></h1>
