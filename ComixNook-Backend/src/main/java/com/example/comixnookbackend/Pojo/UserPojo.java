@@ -1,7 +1,12 @@
 package com.example.comixnookbackend.Pojo;
 
+
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Getter
 @Setter
@@ -15,10 +20,12 @@ public class UserPojo {
     private String fullName;
 
     @NotNull
-    private String email;
-
-    @NotNull
     private String password;
 
-    private String securityQuestion;
+    @NotNull
+    private String email;
+
+    private String role;
+
+
 }

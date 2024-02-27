@@ -1,7 +1,8 @@
 package com.example.comixnookbackend;
 
 import com.example.comixnookbackend.Entity.User;
-import com.example.comixnookbackend.Repo.UserRepo;
+
+import com.example.comixnookbackend.Repo.UserRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -18,7 +19,7 @@ import java.util.Optional;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserRepositoryTest {
     @Autowired
-    private UserRepo userRepo;
+    private UserRepository userRepo;
 
     @Test
     @Order(1)
@@ -29,7 +30,6 @@ public class UserRepositoryTest {
         user.setFullName("Nirajan Mahato");
         user.setEmail("nirajanmahato44@gmail.com");
         user.setPassword("Nirajan@123");
-        user.setSecurityQuestion("anything  blah blah");
 
         user = userRepo.save(user);
 
