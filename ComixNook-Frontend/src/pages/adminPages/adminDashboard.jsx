@@ -43,13 +43,16 @@ const AdminDashboard = () =>{
     })
     const userLength = userData?.data?.length
 
+    const userName = localStorage.getItem('userName');
+    const firstName = userName.split(' ')[0];
+
     return(
         <>
             <div className={"dashboard-main-div"}>
                 <AdminSidebar activePage={currentLocation}/>
                 <div className={"ml-60 px-6 pt-6 items-center"}>
                     <div className={"flex  justify-between"}>
-                        <h1 className={"text-2xl text-gray-800 gilroy-bold"}>Hello, Nirajan</h1>
+                        <h1 className={"text-2xl text-gray-800 gilroy-bold"}>Hello, {firstName}</h1>
                         <h1 className={"text-gray-400 text-sm"}><i className="fa-solid fa-calendar mr-1"></i>{formattedDate}</h1>
                     </div>
                     <div className={"w-full mt-12 px-6 flex justify-between"}>

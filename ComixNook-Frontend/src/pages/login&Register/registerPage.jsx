@@ -23,6 +23,7 @@ const RegisterPage = () =>{
             return axios.post("http://localhost:8082/user/save",payload)
         },onSuccess:()=>{
             reset();
+            window.location.href = '/LoginPage';
         }
     })
 

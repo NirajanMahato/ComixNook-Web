@@ -18,7 +18,11 @@ const VisitorsPage = () => {
     const{data:userData,refetch} = useQuery({
         queryKey:["GET_USER_DATA"],
         queryFn(){
-            return axios.get("http://localhost:8082/user/getAll")
+            return axios.get("http://localhost:8082/user/getAll",{
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+            });
         }
     })
 

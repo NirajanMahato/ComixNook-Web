@@ -3,6 +3,7 @@ import "./navbar.css"
 import {Link, NavLink} from "react-router-dom";
 import comixNook from "../../../public/Logos/ComixNookLogo.png"
 import {FaSearch} from "react-icons/fa";
+import {isAuthenticated,doLogout} from "../service/authService";
 
 class Navbar extends Component{
 
@@ -12,6 +13,17 @@ class Navbar extends Component{
     }
 
     render() {
+
+        const handleLogout = () => {
+            const confirmLogout = window.confirm('Are you sure you want to logout?');
+            if (confirmLogout) {
+                doLogout();
+                window.location.href = '/';
+            }
+        };
+
+        const userName = localStorage.getItem('userName');
+
         return(
             <nav className={"NavbarItems"}>
                 <h1 className={"navbar-logo"}>
@@ -38,11 +50,16 @@ class Navbar extends Component{
                             <span className={"animate-pulse search-span"}><FaSearch/></span>
                         </div></Link>
                     </div>
-                    {/*<div className={"favorite-icon"}>*/}
-                    {/*    <FaRegHeart style={{fontSize:"1.4rem"}}/>*/}
-                    {/*</div>*/}
                     <div className={"navbar-right btn-style"} >
-                        <Link to={'/LoginPage'}><h3><a>Sign-Up</a></h3></Link>
+                        {isAuthenticated() && userName ? (
+                            <h1 className={"btn-style2"}>
+                                <h3 className={"bg-black flex justify-center"} onClick={handleLogout}><a>Logout</a></h3>
+                            </h1>
+                            ) : (
+                            <Link to={'/LoginPage'}>
+                                <h3 className={"flex justify-center"}><a>Sign-In</a></h3>
+                            </Link>
+                            )}
                     </div>
                 </ul>
             </nav>

@@ -42,7 +42,7 @@ const SearchPage = () => {
                             <Link to={'/'}><img src={comixNook} alt={"ComicNook"} width={"150px"}/></Link>
                         </h1>
                         <div className={"md:w-4/12 w-6/12 h-11 flex items-center justify-between rounded-3xl px-2 border-purple-950 border"}>
-                            <input type={"search"} ref={inputRef} placeholder={"Search Comics"} className={"w-full md:pl-32 pl-1 bg-transparent"} value={search} onChange={(e)=> setSearch(e.target.value)}/>
+                            <input type={"search"} ref={inputRef} placeholder={"Search Comics"} className={"w-full md:pr-2 pr-8 bg-transparent text-center"} value={search} onChange={(e)=> setSearch(e.target.value)}/>
                             <span className={"animate-pulse search-span"}><FaSearch/></span>
                         </div>
                         <div className={"md:block hidden btn-style"} >
