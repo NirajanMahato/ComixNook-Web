@@ -25,7 +25,5 @@ public class UserPojo {
     @NotNull
     private String email;
 
-    private String role;
-
-
+//    private String role;
 }

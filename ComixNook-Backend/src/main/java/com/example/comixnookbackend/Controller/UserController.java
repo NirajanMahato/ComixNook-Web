@@ -44,15 +44,15 @@ public class UserController {
         this.userService.deleteById(id);
     }
 
-//    @GetMapping("/getByEmail/{email}")
-//    public Optional<User> getByEmail(@PathVariable("email") String email) {
-//        return this.userService.getByEmail(email);
-//    }
-//
-//    @PostMapping("/new-password")
-//    public String setNewPassword(@RequestBody NewPasswordPojo newPasswordPojo){
-//        userService.setNewPassword(newPasswordPojo);
-//        return "password changed";
-//    }
+    @GetMapping("/getByEmail/{email}")
+    public Optional<User> getByEmail(@PathVariable("email") String email) {
+        return this.userService.getByEmail(email);
+    }
+
+    @PostMapping("/new-password")
+    public String setNewPassword(@RequestBody NewPasswordPojo newPasswordPojo){
+        userService.setNewPassword(newPasswordPojo);
+        return "password changed";
+    }
 
 }
