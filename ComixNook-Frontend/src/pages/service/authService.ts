@@ -18,7 +18,7 @@ export const isAuthenticated = ( ) : boolean => {
     return isLoggedIn();
 };
 
-// Clear localStorage when the browser is closed
-window.addEventListener('beforeunload', () => {
-    localStorage.clear();
-});
+// // Clear localStorage when the browser is closed
+// window.addEventListener('beforeunload', () => {
+//     localStorage.clear();
+// });

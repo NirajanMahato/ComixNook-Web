@@ -4,7 +4,7 @@ import {IoSearch} from "react-icons/io5";
 import {useState} from "react";
 import axios from "axios";
 import {useMutation, useQuery} from "@tanstack/react-query";
-import {MdDelete, MdEditSquare} from "react-icons/md";
+import {MdDelete} from "react-icons/md";
 
 
 const VisitorsPage = () => {
@@ -20,11 +20,12 @@ const VisitorsPage = () => {
         queryFn(){
             return axios.get("http://localhost:8082/user/getAll",{
                 headers: {
-                    Authorization: "Bearer " + localStorage.getItem("token"),
+                    Authorization: "Bearer " + localStorage.getItem("accessToken"),
                 },
             });
         }
     })
+    console.log(userData?.data)
 
     //Searching users
     const filteredUser = userData?.data.filter((user) => {
@@ -39,7 +40,11 @@ const VisitorsPage = () => {
         {
             mutationKey:["DELETE_USER_BY_ID"],
             mutationFn(id){
-                return axios.delete("http://localhost:8082/user/deleteById/"+id);
+                return axios.delete("http://localhost:8082/user/deleteById/"+id,{
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem("accessToken"),
+                    },
+                });
             }
             ,onSuccess(){refetch()}
         }
