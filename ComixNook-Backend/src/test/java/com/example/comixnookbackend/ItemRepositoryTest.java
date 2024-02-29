@@ -40,7 +40,7 @@ public class ItemRepositoryTest {
 
         Item item = new Item();
         item.setItemName("Item Name1");
-        item.setReleasedDate(LocalDate.of(2003, 12, 12));
+        item.setReleasedDate(LocalDate.now());
         item.setItemDescription("This is the discription of the comic");
         item.setDownloadLink("https://example.com/download");
         item.setGenreId(genre);
