@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public String save(UserPojo userPojo) {
+    public void save(UserPojo userPojo) {
         User user = new User();
 
         if(userPojo.getId()!=null){
@@ -35,9 +35,7 @@ public class UserServiceImpl implements UserService {
 
 
         userRepository.save(user); // insert query
-        return "Saved Successfully";
-
-
+//        return "Saved Successfully";
     }
 
     @Override
@@ -55,35 +53,11 @@ public class UserServiceImpl implements UserService {
     public Optional<User> getById(Long id) {
         return userRepository.findById(id);
     }
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles",
-            foreignKey = @ForeignKey(name = "FK_users_roles_userId"),
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"),
-            inverseForeignKey = @ForeignKey(name = "FK_users_roles_roleId"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
-            uniqueConstraints = @UniqueConstraint(name = "UNIQUE_users_roles_userIdRoleId",
-                    columnNames = {"user_id", "role_id"})
-    )
+
     public Optional<User> getByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
-//    public List<Map<String, Object>> getAllStudentsWithoutPassword() {
-//        List<User> students = userRepository.findAll();
-//
-//        List<Map<String, Object>> studentsWithoutPassword = new ArrayList<>();
-//        for (User student : students) {
-//            Map<String, Object> studentMap = new HashMap<>();
-//            studentMap.put("userId", student.getUserId());
-//            studentMap.put("username", student.getUsername());
-//            studentMap.put("email", student.getEmail());
-//            studentMap.put("role", student.getRole());
-//            // Add other fields as needed
-//            studentsWithoutPassword.add(studentMap);
-//        }
-//
-//        return studentsWithoutPassword;
-//    }
 
     public String setNewPassword(NewPasswordPojo newPasswordPojo) {
         String email=jwtService.extractUsername(newPasswordPojo.getToken());
@@ -92,6 +66,4 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         return null;
     }
-
-
 }

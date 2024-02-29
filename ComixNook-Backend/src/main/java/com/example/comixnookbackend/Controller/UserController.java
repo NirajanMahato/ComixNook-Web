@@ -24,8 +24,9 @@ public class UserController {
     private final ApiResponse apiResponse;
 
     @PostMapping("/save")
-    public ResponseEntity<Map<String, Object>> save(@Valid @RequestBody UserPojo userPojo){
-        return apiResponse.successResponse("Data saved successfully", true, null, userService.save(userPojo));
+    public String saveUser(@Valid @RequestBody UserPojo userPojo){
+        userService.save(userPojo);
+        return "data created successfully";
     }
 
     @GetMapping("/getAll")
