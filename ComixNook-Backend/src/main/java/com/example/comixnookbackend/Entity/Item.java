@@ -24,7 +24,7 @@ public class Item {
     @Column(name = "item_description",columnDefinition = "TEXT")
     private String itemDescription;
 
-    @Column(name = "download_link")
+    @Column(name = "download_link",columnDefinition = "TEXT")
     private String downloadLink;
 
     @Column(name = "item_image")
